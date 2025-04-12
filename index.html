@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Birthday!</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      font-family: 'Segoe UI', sans-serif;
+      overflow-x: hidden;
+      animation: gradientShift 10s infinite alternate;
+    }
+
+    @keyframes gradientShift {
+      0% {
+        background-position: 0% 50%;
+      }
+      100% {
+        background-position: 100% 50%;
+      }
+    }
+
+    .container {
+      text-align: center;
+      padding: 50px 20px;
+      color: #fff;
+    }
+
+    h1 {
+      font-size: 3em;
+      margin-bottom: 10px;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    p {
+      font-size: 1.5em;
+      margin-bottom: 30px;
+      animation: fadeIn 3s ease-in-out;
+    }
+
+    .photos {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .photos img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      transition: transform 0.3s;
+      animation: fadeIn 4s ease-in-out;
+    }
+
+    .photos img:hover {
+      transform: scale(1.05);
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .confetti {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 999;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎉 Happy Birthday my cutu potato  🎂</h1>
+    <p>
+  Happy Birthday my cutu potato . ❤️<br><br>
+
+  I honestly don’t even know where to begin because words just never feel enough when it comes to you.<br>
+  You make every day brighter, every moment better, and life... just so much more beautiful.<br><br>
+
+  Watching you laugh, be your goofy self, chase your dreams — it’s my favorite thing in the world. <br>
+  I feel like the luckiest person alive to call you mine. Seriously, what did I do to deserve someone like you?<br><br>
+
+  On your special day, I just want to say — I’m so proud of you, I love you more than you’ll ever fully understand, <br>
+  and I’m always gonna be right here, cheering you on, holding your hand, kissing you and loving the heck out of you. 💫<br><br>
+
+  Love u so much my cutu HAPPY BIRTHDAY
+</p>
+
+
+    <div class="photos">
+      <img src="IMG_4106.jpeg" alt="Birthday Photo 1">
+      <img src="IMG_6956.jpeg" alt="Birthday Photo 2">
+      <img src="F990ED78-4754-4A51-A755-BA8D0703B92D.jpg" alt="Birthday Photo 3">
+    </div>
+  </div>
+
+  <canvas class="confetti"></canvas>
+
+  <script>
+    const canvas = document.querySelector('.confetti');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    let pieces = [];
+
+    for (let i = 0; i < 100; i++) {
+      pieces.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 10 + 5,
+        speed: Math.random() * 3 + 1,
+        color: `hsl(${Math.random() * 360}, 100%, 60%)`,
+      });
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      pieces.forEach(p => {
+        ctx.fillStyle = p.color;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fill();
+
+        p.y += p.speed;
+        if (p.y > canvas.height) p.y = 0;
+      });
+      requestAnimationFrame(draw);
+    }
+
+    draw();
+  </script>
+</body>
+</html>
